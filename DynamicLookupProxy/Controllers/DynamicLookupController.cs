@@ -39,7 +39,7 @@ namespace DynamicLookupProxy.Controllers
                 {
                     if (textBinding != null)
                     {
-                        textValues.Add(new TextValue(item[valueBinding].ToString(), item[textBinding].ToString()));
+                        textValues.Add(new TextValue(item[textBinding].ToString(), item[valueBinding].ToString()));
                     }
                     else
                     {

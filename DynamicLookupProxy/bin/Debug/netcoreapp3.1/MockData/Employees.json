@@ -1,0 +1,68 @@
+﻿{
+  "items": [
+    {
+      "employee_number": "08035946",
+      "employee_full_name": "Cotto, MR. Bob D (Bob)",
+      "supervisor_emp_number": "01012222",
+      "supervisor_full_name": "Smith, MISS Alexa R (Reg)",
+      "person_id": 111059,
+      "supervisor_id": 584,
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/emphier/08035946"
+        }
+      ]
+    },
+    {
+      "employee_number": "98765478",
+      "employee_full_name": "Blogs, MS. Kim E (Julie)",
+      "supervisor_emp_number": "01012222",
+      "supervisor_full_name": "Smith, MISS Alexa R (Reg)",
+      "person_id": 114176,
+      "supervisor_id": 584,
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/emphier/98765478"
+        }
+      ]
+    },
+    {
+      "employee_number": "23456788",
+      "employee_full_name": "Abba, MS. Missie A (Joan)",
+      "supervisor_emp_number": "01012222",
+      "supervisor_full_name": "Smith, MISS Alexa R (Reg)",
+      "person_id": 113249,
+      "supervisor_id": 584,
+      "links": [
+        {
+          "rel": "self",
+          "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/emphier/23456788"
+        }
+      ]
+    }
+  ],
+  "hasMore": false,
+  "limit": 25,
+  "offset": 0,
+  "count": 3,
+  "links": [
+    {
+      "rel": "self",
+      "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/emphier/?q=%7B%22supervisor_emp_number%22:%2201012222%22%7D"
+    },
+    {
+      "rel": "edit",
+      "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/emphier/?q=%7B%22supervisor_emp_number%22:%2201012222%22%7D"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/metadata-catalog/emphier/"
+    },
+    {
+      "rel": "first",
+      "href": "https://oca.tst5.uksbs.co.uk/ords/xxopa/opa/emphier/?q=%7B%22supervisor_emp_number%22:%2201012222%22%7D"
+    }
+  ]
+}
