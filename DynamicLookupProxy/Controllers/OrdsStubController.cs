@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace DynamicLookupProxy.Controllers
 {
@@ -9,41 +9,63 @@ namespace DynamicLookupProxy.Controllers
     public class OrdsStubController : ControllerBase
     {
 
-        [HttpGet("organisations")]
-        public ResponseItems Organisations()
+        [HttpGet("businesunits")]
+        public ResponseItems BusinesUnits(string q, int limit)
         {
+            QueryParams queryParams = q == null ? new QueryParams() : (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             ResponseItems responseItems = new ResponseItems(new List<object>()
             {
-                new OrdsOrganisation("1000", "UKGV 100"),
-                new OrdsOrganisation("1001", "UKSBS 101")
+                new ResponseItem {Business_unit = "1000"},
+                new ResponseItem {Business_unit = "1001"}
             });
             return responseItems;
         }
         
-        [HttpGet("organisations/{organisation}/costcentres")]
-        public ResponseItems CostCentres(string organisation)
+        [HttpGet("costcentres")]
+        public ResponseItems CostCentres(string q, int limit)
         {
+            QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             ResponseItems responseItems = new ResponseItems(new List<object>()
             {
-                new OrdsCostCentre("1000", "UKGV 100", "107988"),
-                new OrdsCostCentre("1000", "UKGV 100", "105739")
+                new ResponseItem {Business_unit = queryParams.business_unit, Cost_centre = "107988"},
+                new ResponseItem {Business_unit = queryParams.business_unit, Cost_centre = "105739"}
             });
             return responseItems;
         }
         
-        [HttpGet("organisations/{organisation}/costcentres/{costcentre}/positions")]
-        public ResponseItems Positions(string organisation, string costcentre)
+        [HttpGet("positions")]
+        public ResponseItems Positions(string q, int limit)
         {
+            QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             ResponseItems responseItems = new ResponseItems(new List<object>()
             {
-                new OrdsPosition("1000", "UKGV 100", "107988", "BIS-1.1.2.107988"),
-                new OrdsPosition("1000", "UKGV 100", "107988", "SIP-1.2.5.107988")
+                new ResponseItem {Business_unit = queryParams.business_unit, Cost_centre = queryParams.cost_centre, Position = "BIS-1.1.2.107988"},
+                new ResponseItem {Business_unit = queryParams.business_unit, Cost_centre = queryParams.cost_centre, Position = "SIP-1.2.5.107988"}
             });
             return responseItems;
         }
         
+        [HttpGet("programmes")]
+        public ResponseItems Programmes(string q, int limit)
+        {
+            QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
+            ResponseItems responseItems = new ResponseItems(new List<object>()
+            {
+                new ResponseItem {Business_unit = queryParams.business_unit, Cost_centre = queryParams.cost_centre, Programme = "3333333"},
+                new ResponseItem {Business_unit = queryParams.business_unit, Cost_centre = queryParams.cost_centre, Programme = "3434343"}
+            });
+            return responseItems;
+        }
     }
 
+    public class QueryParams
+    {
+        public string business_unit { get; set; }
+        public string cost_centre { get; set; }
+        public string position { get; set; }
+        public string programme { get; set; }
+    }
+    
     public class ResponseItems
     {
         public List<object> Items { get; }
@@ -54,43 +76,12 @@ namespace DynamicLookupProxy.Controllers
         }
     }
 
-    public class OrdsOrganisation
+    public class ResponseItem
     {
-        public string Org_id { get; }
-        public string Org_name { get; }
-
-        public OrdsOrganisation(string org_id, string org_name)
-        {
-            Org_id = org_id;
-            Org_name = org_name;
-        }
+        public string Business_unit { get; set; }
+        public string Cost_centre { get; set; }
+        public string Position { get; set; }
+        public string Programme { get; set; }
     }
 
-    public class OrdsCostCentre
-    {
-        public string Org_id { get; }
-        public string Org_name { get; }
-        public string Cost_centre { get; }
-        public OrdsCostCentre(string org_id, string org_name, string cost_centre)
-        {
-            Org_id = org_id;
-            Org_name = org_name;
-            Cost_centre = cost_centre;
-        }
-    }
-    
-    public class OrdsPosition
-    {
-        public string Org_id { get; }
-        public string Org_name { get; }
-        public string Cost_centre { get; }
-        public string Position { get; }
-        public OrdsPosition(string org_id, string org_name, string cost_centre, string position)
-        {
-            Org_id = org_id;
-            Org_name = org_name;
-            Cost_centre = cost_centre;
-            Position = position;
-        }
-    }
 }

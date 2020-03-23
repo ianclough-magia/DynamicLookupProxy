@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Projects\\Magia\\SBS\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
+    "projectUniqueName": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
     "projectName": "DynamicLookupProxy",
-    "projectPath": "C:\\Projects\\Magia\\SBS\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
-    "outputPath": "C:\\Projects\\Magia\\SBS\\DynamicLookupProxy\\DynamicLookupProxy\\obj\\",
+    "projectPath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
+    "outputPath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\obj\\",
     "projectStyle": "PackageReference",
     "originalTargetFrameworks": [
       "netcoreapp3.1"

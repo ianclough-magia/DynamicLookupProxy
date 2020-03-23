@@ -2684,11 +2684,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projects\\Magia\\SBS\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
+      "projectUniqueName": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
       "projectName": "DynamicLookupProxy",
-      "projectPath": "C:\\Projects\\Magia\\SBS\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
+      "projectPath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
       "packagesPath": "C:\\Users\\ianclough\\.nuget\\packages\\",
-      "outputPath": "C:\\Projects\\Magia\\SBS\\DynamicLookupProxy\\DynamicLookupProxy\\obj\\",
+      "outputPath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ianclough\\AppData\\Roaming\\NuGet\\NuGet.Config",
