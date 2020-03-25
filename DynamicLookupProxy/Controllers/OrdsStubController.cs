@@ -61,12 +61,21 @@ namespace DynamicLookupProxy.Controllers
         public ResponseItems EmployeeDetail(string q, int limit)
         {
             QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
-            ResponseItems responseItems = new ResponseItems(new List<object>()
+            if (string.IsNullOrEmpty(queryParams.employee_number))
             {
-                new EmployeeDetail {Employee_number = queryParams.employee_number},
-                new EmployeeDetail {Employee_number = queryParams.employee_number}
-            });
-            return responseItems;
+                ResponseItems responseItems = new ResponseItems(new List<object>()
+                {
+                });
+                return responseItems;
+            }
+            else
+            {
+                ResponseItems responseItems = new ResponseItems(new List<object>()
+                {
+                    new EmployeeDetail {Employee_number = queryParams.employee_number, Full_name = "John Doe"},
+                });
+                return responseItems;
+            }
         }
 
         [HttpGet("emphier")]

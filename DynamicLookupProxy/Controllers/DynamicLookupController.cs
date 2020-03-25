@@ -28,7 +28,7 @@ namespace DynamicLookupProxy.Controllers
             try
             {
                 Task<HttpResponseMessage> responseTask =
-                    client.GetAsync("http://localhost:5000/api/lookup/ords/" + query);
+                    client.GetAsync("http://localhost:6000/api/lookup/ords/" + query);
                 HttpResponseMessage responseMessage = responseTask.Result;
                 string responseContent = responseMessage.Content.ReadAsStringAsync().Result;
 
@@ -56,6 +56,27 @@ namespace DynamicLookupProxy.Controllers
             return textValues;
         }
 
+        [HttpGet("/api/{apiPath}")]
+        public ActionResult GetEmployeeDetails(string apiPath, string q)
+        {
+            Console.WriteLine("DynamicLookupController.GetEmployeeDetails apiPath=" + apiPath + " q=" + q);
+            try
+            {
+                Task<HttpResponseMessage> responseTask =
+                    client.GetAsync("http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q);
+                HttpResponseMessage responseMessage = responseTask.Result;
+                string responseContent = responseMessage.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("Response: " + responseContent);
+                return Ok(responseContent);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                throw e;
+            }
+        }
+        
         private List<TextValue> GetOrganisations(string filter)
         {
             Console.WriteLine("GetOrganisations");
