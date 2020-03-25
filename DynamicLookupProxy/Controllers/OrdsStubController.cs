@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -60,6 +57,7 @@ namespace DynamicLookupProxy.Controllers
         [HttpGet("empdetail")]
         public ResponseItems EmployeeDetail(string q, int limit)
         {
+            Console.WriteLine("OrdeStubController.EmployeeDetail q=" + q + " limit=" + limit);
             QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             if (string.IsNullOrEmpty(queryParams.employee_number))
             {
@@ -70,9 +68,19 @@ namespace DynamicLookupProxy.Controllers
             }
             else
             {
+                string employeesJson = System.IO.File.ReadAllText("c:\\SBS\\ords_employee.data");
+                EmployeeDetails employeeDetails = (EmployeeDetails) JsonSerializer.Deserialize(employeesJson, typeof(EmployeeDetails));
+                EmployeeDetail selectedEmployeeDetail = null;
+                foreach (EmployeeDetail employeeDetail in employeeDetails.items)
+                {
+                    if (employeeDetail.employee_number == queryParams.employee_number)
+                    {
+                        selectedEmployeeDetail = employeeDetail;
+                    }
+                }
                 ResponseItems responseItems = new ResponseItems(new List<object>()
                 {
-                    new EmployeeDetail {Employee_number = queryParams.employee_number, Full_name = "John Doe"},
+                    selectedEmployeeDetail
                 });
                 return responseItems;
             }
@@ -126,18 +134,24 @@ namespace DynamicLookupProxy.Controllers
 
     public class EmployeeDetail
     {
-        public string Employee_number { get; set; }
-        public string Full_name { get; set; }
-        public string Last_name { get; set; }
-        public string First_name { get; set; }
-        public string Middle_names { get; set; }
-        public string Known_as { get; set; }
-        public string National_identifier { get; set; }
-        public string Email_address { get; set; }
-        public string Assignment_number { get; set; }
-        public string Effective_start_date { get; set; }
+        public string employee_number { get; set; }
+        public string full_name { get; set; }
+        public string last_name { get; set; }
+        public string first_name { get; set; }
+        public string middle_names { get; set; }
+        public string known_as { get; set; }
+        public string national_identifier { get; set; }
+        public string email_address { get; set; }
+        public string assignment_number { get; set; }
+        public string effective_start_date { get; set; }
         public string client { get; set; }
     }
+
+    public class EmployeeDetails
+    {
+        public List<EmployeeDetail> items { get; set; }
+    }
+    
 
     public class EmployeeSummary
     {
