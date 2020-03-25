@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj": {}
+    "c:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj": {
+    "c:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
+        "projectUniqueName": "c:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
         "projectName": "DynamicLookupProxy",
-        "projectPath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
+        "projectPath": "c:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
         "packagesPath": "C:\\Users\\ianclough\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\obj\\",
+        "outputPath": "c:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ianclough\\AppData\\Roaming\\NuGet\\NuGet.Config",
