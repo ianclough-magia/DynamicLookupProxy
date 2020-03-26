@@ -27,15 +27,7 @@ namespace DynamicLookupProxy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                    builder =>
-                    {
-//                        builder.WithOrigins("http://localhost:7001", "https://localhost:7002");
-                        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-                    });
-            });
+            services.AddCors();
 
             services.AddControllers();
         }
@@ -50,12 +42,16 @@ namespace DynamicLookupProxy
 
 //            app.UseHttpsRedirection();
 
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+//                .AllowCredentials());            
+
             app.UseRouting();
 
             app.UseAuthorization();
 
-            app.UseCors(MyAllowSpecificOrigins);
-            
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
