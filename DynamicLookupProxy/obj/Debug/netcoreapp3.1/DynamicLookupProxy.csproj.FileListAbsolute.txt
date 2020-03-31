@@ -43,3 +43,5 @@ C:\Projects\Magia\github\DynamicLookupProxy\DynamicLookupProxy\bin\Debug\netcore
 C:\Projects\Magia\github\DynamicLookupProxy\DynamicLookupProxy\bin\Debug\netcoreapp3.1\MockData\Employees.json
 C:\Projects\Magia\github\DynamicLookupProxy\DynamicLookupProxy\bin\Debug\netcoreapp3.1\MockData\Positions.json
 C:\Projects\Magia\github\DynamicLookupProxy\DynamicLookupProxy\bin\Debug\netcoreapp3.1\MockData\Programmes.json
+C:\Projects\Magia\github\DynamicLookupProxy\DynamicLookupProxy\obj\Debug\netcoreapp3.1\DynamicLookupProxy.csproj.CoreCompileInputs.cache
+C:\Projects\Magia\github\DynamicLookupProxy\DynamicLookupProxy\obj\Debug\netcoreapp3.1\DynamicLookupProxy.genruntimeconfig.cache
