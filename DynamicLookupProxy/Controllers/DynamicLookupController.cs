@@ -25,7 +25,7 @@ namespace DynamicLookupProxy.Controllers
             
             List<TextValue> textValues = new List<TextValue>();
 
-            if (true)
+            if (true)    //TODO Remove this test code!!
             {
                 if (query.StartsWith("businesunits"))
                 {
@@ -111,6 +111,12 @@ namespace DynamicLookupProxy.Controllers
                             textValues.Add(new TextValue("Bus_3:Cost_3:Pos_3", "Bus_3:Cost_3:Pos_3"));
                         }
                     }
+                }
+                else if (query.StartsWith(("emphier")))
+                {
+                    textValues.Add(new TextValue("Emp 1", "emp_1"));
+                    textValues.Add(new TextValue("Emp 2", "emp_2"));
+                    textValues.Add(new TextValue("Emp 3", "emp_3"));
                 }
                 return textValues;
             }
