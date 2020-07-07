@@ -36,7 +36,7 @@
       <e p="DynamicLookupProxy.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
     </e>
-    <e p="C:\Users\ianclough\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\ianclough\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_DynamicLookupProxy.827199019.00" t="ExcludeRecursive" />
+    <e p="C:\Users\ianclough\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\ianclough\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_DynamicLookupProxy.827199019.00" t="ExcludeRecursive" />
   </component>
 </project>
