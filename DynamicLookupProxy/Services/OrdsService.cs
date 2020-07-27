@@ -21,7 +21,8 @@ namespace DynamicLookupProxy.Services
 
         public string GetEmployeeDetails(string apiPath, string q)
         {
-            GetAccessToken();
+            Task task = GetAccessToken();
+            task.Wait();
             
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
             client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
