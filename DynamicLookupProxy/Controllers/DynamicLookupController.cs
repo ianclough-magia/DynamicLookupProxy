@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
+using DynamicLookupProxy.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
@@ -12,8 +13,14 @@ namespace DynamicLookupProxy.Controllers
     [Route("api/lookup")]
     public class DynamicLookupController : ControllerBase
     {
-
+        private readonly IOrdsService _ordsService;
+        
         HttpClient client = new HttpClient();
+
+        public DynamicLookupController(IOrdsService ordsService)
+        {
+            _ordsService = ordsService;
+        }
         
         [HttpGet()]
         public ActionResult<List<TextValue>> GetLookup(string query, string valueBinding, string textBinding)
@@ -25,7 +32,8 @@ namespace DynamicLookupProxy.Controllers
             
             List<TextValue> textValues = new List<TextValue>();
 
-            if (true)    //TODO Remove this test code!!
+            string ordsResponse = _ordsService.Lookup(query);
+            if (false)    //TODO Remove this test code!!
             {
                 if (query.StartsWith("businesunits"))
                 {
@@ -122,12 +130,7 @@ namespace DynamicLookupProxy.Controllers
             }
             try
             {
-                Task<HttpResponseMessage> responseTask =
-                    client.GetAsync("http://localhost:6000/api/lookup/ords/" + query);
-                HttpResponseMessage responseMessage = responseTask.Result;
-                string responseContent = responseMessage.Content.ReadAsStringAsync().Result;
-
-                JObject jobject = JObject.Parse(responseContent);
+                JObject jobject = JObject.Parse(ordsResponse);
 
                 JArray jarray = (JArray) jobject["items"];
                 foreach (JObject item in jarray)

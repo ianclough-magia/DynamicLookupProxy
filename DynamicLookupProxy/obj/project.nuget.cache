@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1RENuuAVXtgyRsZhITwXFDxVYAO+PAyHSLTQ0Mi9SsS9FT/lih2owjTDHHA+4gT0YEM35XJqH+2IjeuQ0QJJFQ==",
+  "dgSpecHash": "sdgueWaaTYq8+PLlPQdYuwuAI3SgWvk1TPqsl7p7WHlUhCHzzEIqQ2PYnz3JclTGhD6nFWM82KQBKvWhe1Wp+w==",
   "success": true,
   "projectFilePath": "C:\\Projects\\Magia\\github\\DynamicLookupProxy\\DynamicLookupProxy\\DynamicLookupProxy.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ianclough\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+    "C:\\Users\\ianclough\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\ianclough\\.nuget\\packages\\restsharp\\106.11.4\\restsharp.106.11.4.nupkg.sha512"
   ],
   "logs": []
 }

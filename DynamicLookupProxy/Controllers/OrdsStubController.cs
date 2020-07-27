@@ -13,6 +13,7 @@ namespace DynamicLookupProxy.Controllers
         [HttpGet("businesunits")]
         public IActionResult BusinesUnits(string q, int limit)
         {
+            Console.WriteLine("OrdsStubController.BusinessUnits: " + q + ":" + limit);
             QueryParams queryParams = q == null ? new QueryParams() : (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             string businessUnitsJson = System.IO.File.ReadAllText(@"MockData\BusinessUnits.json");
             return Ok(businessUnitsJson);
@@ -21,6 +22,7 @@ namespace DynamicLookupProxy.Controllers
         [HttpGet("costcentres")]
         public IActionResult CostCentres(string q, int limit)
         {
+            Console.WriteLine("OrdsStubController.CostCentres: " + q + ":" + limit);
             QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             string costCentresJson = System.IO.File.ReadAllText(@"MockData\CostCentres.json");
             return Ok(costCentresJson);
@@ -35,6 +37,7 @@ namespace DynamicLookupProxy.Controllers
         [HttpGet("positions")]
         public IActionResult Positions(string q, int limit)
         {
+            Console.WriteLine("OrdsStubController.Positions: " + q + ":" + limit);
             QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             string positionsJson = System.IO.File.ReadAllText(@"MockData\Positions.json");
             return Ok(positionsJson);
@@ -49,6 +52,7 @@ namespace DynamicLookupProxy.Controllers
         [HttpGet("programmes")]
         public IActionResult Programmes(string q, int limit)
         {
+            Console.WriteLine("OrdsStubController.Programmes: " + q + ":" + limit);
             QueryParams queryParams = (QueryParams) JsonSerializer.Deserialize(q, typeof(QueryParams));
             string programmesJson = System.IO.File.ReadAllText(@"MockData\Programmes.json");
             return Ok(programmesJson);

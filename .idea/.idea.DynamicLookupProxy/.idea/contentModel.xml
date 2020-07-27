@@ -8,6 +8,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Controllers" t="Include">
           <e p="DynamicLookupController.cs" t="Include" />
+          <e p="OrdsProxyController.cs" t="Include" />
           <e p="OrdsStubController.cs" t="Include" />
           <e p="WeatherForecastController.cs" t="Include" />
         </e>
@@ -29,6 +30,11 @@
         <e p="Program.cs" t="Include" />
         <e p="Properties" t="Include">
           <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Services" t="Include">
+          <e p="IOrdsService.cs" t="Include" />
+          <e p="OrdsService.cs" t="Include" />
+          <e p="OrdsServiceMock.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
         <e p="WeatherForecast.cs" t="Include" />
