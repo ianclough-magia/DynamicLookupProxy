@@ -10,7 +10,7 @@ namespace DynamicLookupProxy.Services
 {
     public class OrdsService : IOrdsService
     {
-        RestClient client = new RestClient("https://149.155.63.154/ords/xxopa/opa/empdetail/");
+        RestClient client = new RestClient("https://149.155.63.154/ords/xxopa/opa");
 
         string accessToken = string.Empty;
         
@@ -25,10 +25,11 @@ namespace DynamicLookupProxy.Services
             
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
             client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
-            var request = new RestRequest(Method.GET);
+            var request = new RestRequest("empdetail", Method.GET);
             request.AddHeader("Authorization", $"Bearer {accessToken}");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
+            request.AddParameter("q", q);
             var response = client.Execute(request);
             return response.Content;
         }

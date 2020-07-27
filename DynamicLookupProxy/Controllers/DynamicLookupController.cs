@@ -160,12 +160,8 @@ namespace DynamicLookupProxy.Controllers
             Console.WriteLine("DynamicLookupController.GetEmployeeDetails apiPath=" + apiPath + " q=" + q);
             try
             {
-                string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
-                Console.WriteLine("requestUri: " + requestUri);
-                Task<HttpResponseMessage> responseTask =
-                    client.GetAsync(requestUri);
-                HttpResponseMessage responseMessage = responseTask.Result;
-                string responseContent = responseMessage.Content.ReadAsStringAsync().Result;
+                string ordsResponse = _ordsService.GetEmployeeDetails(apiPath, q);
+                string responseContent = ordsResponse;
                 Console.WriteLine("Response: " + responseContent);
                 return Ok(responseContent);
             }
