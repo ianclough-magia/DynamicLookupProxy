@@ -30,7 +30,7 @@ namespace DynamicLookupProxy
 
             services.AddControllers();
 //            services.AddScoped<IOrdsService, OrdsServiceMock>();
-            services.AddScoped<IOrdsService, OrdsService>();
+            services.AddSingleton<IOrdsService, OrdsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

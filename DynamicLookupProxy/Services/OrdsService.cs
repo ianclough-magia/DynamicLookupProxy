@@ -10,9 +10,11 @@ namespace DynamicLookupProxy.Services
 {
     public class OrdsService : IOrdsService
     {
-        RestClient client = new RestClient("https://149.155.63.154/ords/xxopa/opa");
+        private readonly RestClient _client = new RestClient("https://149.155.63.154/ords/xxopa/opa");
 
-        string accessToken = string.Empty;
+        private string _accessToken = string.Empty;
+
+        private DateTime _accessTokenRenewAt = DateTime.MinValue;
         
         public string Lookup(string query)
         {
@@ -21,18 +23,16 @@ namespace DynamicLookupProxy.Services
 //            HttpResponseMessage responseMessage = responseTask.Result;
 //            string responseContent = responseMessage.Content.ReadAsStringAsync().Result;
 //            return responseContent;
-            
-            Task task = GetAccessToken();
-            task.Wait();
+            string accessToken = AcquireAccessToken();
             
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
-            client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            _client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(query, Method.GET);
             request.AddHeader("Authorization", $"Bearer {accessToken}");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
 //            request.AddParameter("q", q);
-            var response = client.Execute(request);
+            var response = _client.Execute(request);
             string responseContent = response.Content;
             Console.WriteLine($"ResponseContent: {responseContent}");
             return responseContent;
@@ -40,18 +40,28 @@ namespace DynamicLookupProxy.Services
 
         public string GetEmployeeDetails(string apiPath, string q)
         {
-            Task task = GetAccessToken();
-            task.Wait();
-            
+            string accessToken = AcquireAccessToken();
+
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
-            client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            _client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest("empdetail", Method.GET);
             request.AddHeader("Authorization", $"Bearer {accessToken}");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddParameter("q", q);
-            var response = client.Execute(request);
+            var response = _client.Execute(request);
             return response.Content;
+        }
+
+        private string AcquireAccessToken()
+        {
+            if (string.IsNullOrEmpty(_accessToken) || DateTime.Compare(_accessTokenRenewAt, DateTime.Now) < 0)
+            {
+                Task task = GetAccessToken();
+                task.Wait();
+            }
+
+            return _accessToken;
         }
         
         async Task GetAccessToken()
@@ -81,8 +91,17 @@ namespace DynamicLookupProxy.Services
                     var result = response.Content.ReadAsStringAsync().Result;
  
                     var json = JsonConvert.DeserializeObject<dynamic>(result);
-                    accessToken = json["access_token"];
-                    Console.WriteLine($"Access Token={accessToken}");
+                    _accessToken = json["access_token"];
+                    string expiresIn = json["expires_in"];
+                    if (!string.IsNullOrEmpty(expiresIn))
+                    {
+                        _accessTokenRenewAt = DateTime.Now.AddSeconds(int.Parse(expiresIn));
+                    }
+                    else
+                    {
+                        _accessTokenRenewAt = DateTime.MinValue;
+                    }
+                    Console.WriteLine($"Access Token={_accessToken}");
                 }
             }
         }
