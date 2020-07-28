@@ -16,7 +16,24 @@ namespace DynamicLookupProxy.Services
         
         public string Lookup(string query)
         {
-            throw new System.NotImplementedException();
+//            Task<HttpResponseMessage> responseTask =
+//                client.GetAsync("http://localhost:6000/api/lookup/ords/" + query);
+//            HttpResponseMessage responseMessage = responseTask.Result;
+//            string responseContent = responseMessage.Content.ReadAsStringAsync().Result;
+//            return responseContent;
+            
+            Task task = GetAccessToken();
+            task.Wait();
+            
+//            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
+            client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            var request = new RestRequest("q", Method.GET);
+            request.AddHeader("Authorization", $"Bearer {accessToken}");
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+//            request.AddParameter("q", q);
+            var response = client.Execute(request);
+            return response.Content;
         }
 
         public string GetEmployeeDetails(string apiPath, string q)
