@@ -147,6 +147,7 @@ namespace DynamicLookupProxy.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine("Error reading query result: " + query);
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.StackTrace);
             }

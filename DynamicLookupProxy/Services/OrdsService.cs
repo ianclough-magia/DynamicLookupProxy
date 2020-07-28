@@ -27,7 +27,7 @@ namespace DynamicLookupProxy.Services
             
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
             client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
-            var request = new RestRequest("q", Method.GET);
+            var request = new RestRequest(query, Method.GET);
             request.AddHeader("Authorization", $"Bearer {accessToken}");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
