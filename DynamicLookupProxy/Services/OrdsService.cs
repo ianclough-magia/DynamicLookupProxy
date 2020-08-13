@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -26,6 +27,7 @@ namespace DynamicLookupProxy.Services
             string accessToken = AcquireAccessToken();
             
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
+            query = query.Replace("&", "%26");
             _client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest(query, Method.GET);
             request.AddHeader("Authorization", $"Bearer {accessToken}");
@@ -45,6 +47,7 @@ namespace DynamicLookupProxy.Services
 //            string requestUri = "http://localhost:6000/api/lookup/ords/" + apiPath + "?" + q;
             _client.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
             var request = new RestRequest("empdetail", Method.GET);
+            q = q.Replace("&", "%26");
             request.AddHeader("Authorization", $"Bearer {accessToken}");
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
