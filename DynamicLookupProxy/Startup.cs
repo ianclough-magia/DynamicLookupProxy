@@ -29,7 +29,7 @@ namespace DynamicLookupProxy
             services.AddCors();
 
             services.AddControllers();
-//            services.AddScoped<IOrdsService, OrdsServiceMock>();
+//            services.AddSingleton<IOrdsService, OrdsServiceMock>();
             services.AddSingleton<IOrdsService, OrdsService>();
         }
 

@@ -10,7 +10,6 @@
           <e p="DynamicLookupController.cs" t="Include" />
           <e p="OrdsProxyController.cs" t="Include" />
           <e p="OrdsStubController.cs" t="Include" />
-          <e p="WeatherForecastController.cs" t="Include" />
         </e>
         <e p="DynamicLookupProxy.csproj" t="IncludeRecursive" />
         <e p="MockData" t="Include">

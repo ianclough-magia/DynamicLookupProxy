@@ -33,101 +33,6 @@ namespace DynamicLookupProxy.Controllers
             List<TextValue> textValues = new List<TextValue>();
 
             string ordsResponse = _ordsService.Lookup(query);
-            if (false)    //TODO Remove this test code!!
-            {
-                if (query.StartsWith("businesunits"))
-                {
-                    textValues.Add(new TextValue("Bus_1", "Bus_1"));
-                    textValues.Add(new TextValue("Bus_2", "Bus_2"));
-                    textValues.Add(new TextValue("Bus_3", "Bus_3"));
-                } else if (query.StartsWith("costcentres"))
-                {
-                    if (query.Contains("Bus_1"))
-                    {
-                        textValues.Add(new TextValue("Bus_1:Cost_1", "Bus_1:Cost_1"));
-                        textValues.Add(new TextValue("Bus_1:Cost_2", "Bus_1:Cost_2"));
-                        textValues.Add(new TextValue("Bus_1:Cost_3", "Bus_1:Cost_3"));
-                    }
-                    else if (query.Contains("Bus_2"))
-                    {
-                        textValues.Add(new TextValue("Bus_2:Cost_1", "Bus_2:Cost_1"));
-                        textValues.Add(new TextValue("Bus_2:Cost_2", "Bus_2:Cost_2"));
-                        textValues.Add(new TextValue("Bus_2:Cost_3", "Bus_2:Cost_3"));
-                    }
-                    else if (query.Contains("Bus_2"))
-                    {
-                        textValues.Add(new TextValue("Bus_3:Cost_1", "Bus_3:Cost_1"));
-                        textValues.Add(new TextValue("Bus_3:Cost_2", "Bus_3:Cost_2"));
-                        textValues.Add(new TextValue("Bus_3:Cost_3", "Bus_3:Cost_3"));
-                    }
-                } else if (query.StartsWith("positions"))
-                {
-                    if (query.Contains("Bus_1"))
-                    {
-                        if (query.Contains("Cost_1"))
-                        {
-                            textValues.Add(new TextValue("Bus_1:Cost_1:Pos_1", "Bus_1:Cost_1:Pos_1"));
-                            textValues.Add(new TextValue("Bus_1:Cost_1:Pos_2", "Bus_1:Cost_1:Pos_2"));
-                            textValues.Add(new TextValue("Bus_1:Cost_1:Pos_3", "Bus_1:Cost_1:Pos_3"));
-                        } else if (query.Contains("Cost_2"))
-                        {
-                            textValues.Add(new TextValue("Bus_1:Cost_2:Pos_1", "Bus_1:Cost_2:Pos_1"));
-                            textValues.Add(new TextValue("Bus_1:Cost_2:Pos_2", "Bus_1:Cost_2:Pos_2"));
-                            textValues.Add(new TextValue("Bus_1:Cost_2:Pos_3", "Bus_1:Cost_2:Pos_3"));
-                        } else if (query.Contains("Cost_3"))
-                        {
-                            textValues.Add(new TextValue("Bus_1:Cost_3:Pos_1", "Bus_1:Cost_3:Pos_1"));
-                            textValues.Add(new TextValue("Bus_1:Cost_3:Pos_2", "Bus_1:Cost_3:Pos_2"));
-                            textValues.Add(new TextValue("Bus_1:Cost_3:Pos_3", "Bus_1:Cost_3:Pos_3"));
-                        }
-                    }
-                    else if (query.Contains("Bus_2"))
-                    {
-                        if (query.Contains("Cost_1"))
-                        {
-                            textValues.Add(new TextValue("Bus_2:Cost_1:Pos_1", "Bus_2:Cost_1:Pos_1"));
-                            textValues.Add(new TextValue("Bus_2:Cost_1:Pos_2", "Bus_2:Cost_1:Pos_2"));
-                            textValues.Add(new TextValue("Bus_2:Cost_1:Pos_3", "Bus_2:Cost_1:Pos_3"));
-                        } else if (query.Contains("Cost_2"))
-                        {
-                            textValues.Add(new TextValue("Bus_2:Cost_2:Pos_1", "Bus_2:Cost_2:Pos_1"));
-                            textValues.Add(new TextValue("Bus_2:Cost_2:Pos_2", "Bus_2:Cost_2:Pos_2"));
-                            textValues.Add(new TextValue("Bus_2:Cost_2:Pos_3", "Bus_2:Cost_2:Pos_3"));
-                        } else if (query.Contains("Cost_3"))
-                        {
-                            textValues.Add(new TextValue("Bus_2:Cost_3:Pos_1", "Bus_2:Cost_3:Pos_1"));
-                            textValues.Add(new TextValue("Bus_2:Cost_3:Pos_2", "Bus_2:Cost_3:Pos_2"));
-                            textValues.Add(new TextValue("Bus_2:Cost_3:Pos_3", "Bus_2:Cost_3:Pos_3"));
-                        }
-                    }
-                    else if (query.Contains("Bus_3"))
-                    {
-                        if (query.Contains("Cost_1"))
-                        {
-                            textValues.Add(new TextValue("Bus_3:Cost_1:Pos_1", "Bus_3:Cost_1:Pos_1"));
-                            textValues.Add(new TextValue("Bus_3:Cost_1:Pos_2", "Bus_3:Cost_1:Pos_2"));
-                            textValues.Add(new TextValue("Bus_3:Cost_1:Pos_3", "Bus_3:Cost_1:Pos_3"));
-                        } else if (query.Contains("Cost_2"))
-                        {
-                            textValues.Add(new TextValue("Bus_3:Cost_2:Pos_1", "Bus_3:Cost_2:Pos_1"));
-                            textValues.Add(new TextValue("Bus_3:Cost_2:Pos_2", "Bus_3:Cost_2:Pos_2"));
-                            textValues.Add(new TextValue("Bus_3:Cost_2:Pos_3", "Bus_3:Cost_2:Pos_3"));
-                        } else if (query.Contains("Cost_3"))
-                        {
-                            textValues.Add(new TextValue("Bus_3:Cost_3:Pos_1", "Bus_3:Cost_3:Pos_1"));
-                            textValues.Add(new TextValue("Bus_3:Cost_3:Pos_2", "Bus_3:Cost_3:Pos_2"));
-                            textValues.Add(new TextValue("Bus_3:Cost_3:Pos_3", "Bus_3:Cost_3:Pos_3"));
-                        }
-                    }
-                }
-                else if (query.StartsWith(("emphier")))
-                {
-                    textValues.Add(new TextValue("Emp 1", "emp_1"));
-                    textValues.Add(new TextValue("Emp 2", "emp_2"));
-                    textValues.Add(new TextValue("Emp 3", "emp_3"));
-                }
-                return textValues;
-            }
             try
             {
                 JObject jobject = JObject.Parse(ordsResponse);
@@ -135,14 +40,13 @@ namespace DynamicLookupProxy.Controllers
                 JArray jarray = (JArray) jobject["items"];
                 foreach (JObject item in jarray)
                 {
-                    if (textBinding != null)
+                    if (textBinding == null)
                     {
-                        textValues.Add(new TextValue(item[textBinding].ToString(), item[valueBinding].ToString()));
+                        textBinding = valueBinding;
                     }
-                    else
-                    {
-                        textValues.Add(new TextValue(item[valueBinding].ToString(), item[valueBinding].ToString()));
-                    }
+                        textValues.Add(new TextValue(
+                            item[textBinding] != null ? item[textBinding].ToString() : "",
+                            item[valueBinding] != null ? item[valueBinding].ToString() : ""));
                 }
             }
             catch (Exception e)
